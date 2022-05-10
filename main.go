@@ -13,7 +13,8 @@ import (
 )
 
 func main() {
-	fptr := flag.String("file", "test.txt", "file path to read from")
+	fptr := flag.String("input", "test.txt", "file path to read from")
+	outPtr := flag.String("output", "", "Output file")
 	flag.Parse()
 	fmt.Println("value of fpath is", *fptr)
 	f, err := os.Open(*fptr)
@@ -30,5 +31,12 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("data: ", data[0][0])
+	out, err := os.Create(*outPtr)
+	if err != nil {
+		log.Fatal((err))
+	}
+	_, outErr := out.WriteString(data[0][0])
+	if outErr != nil {
+		log.Fatal(outErr)
+	}
 }

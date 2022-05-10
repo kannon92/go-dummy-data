@@ -1,4 +1,4 @@
-module go-cli-csv
+module go-dummy-data
 
 go 1.18
 
